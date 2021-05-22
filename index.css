@@ -12,23 +12,36 @@ body {
   font-size: 3rem;
   font-family: "Nanum Gothic Coding", Inconsolata, monospace;
 }
+@media only screen and (max-width: 600px) {
+  body {
+    padding: 1rem;
+  }
+}
 
 #message {
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+  flex-wrap: wrap;
 }
 
 img {
-  max-width: 80%;
-  max-height: 80%;
+  max-width: 100%;
+  max-height: 100%;
   width: auto;
   height: auto;
 }
 
 a {
   margin: 0 1rem;
+}
+
+.footer {
+  position: absolute;
+  bottom: 10px;
+  color: #ccc;
+  font-size: 2rem;
 }
