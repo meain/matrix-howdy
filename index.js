@@ -37,7 +37,6 @@ function displayMessage(message) {
   const messageDiv = document.getElementById("message");
   console.log(message);
   if (message.content.msgtype === "m.text") {
-    console.log(message.content.format);
     if (message.content.format === "org.matrix.custom.html")
       messageDiv.innerHTML = message.content.formatted_body;
     else messageDiv.innerText = message.content.body;
