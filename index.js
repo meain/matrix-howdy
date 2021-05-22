@@ -39,9 +39,16 @@ function displayMessage(message) {
   const messageDiv = document.getElementById("message");
   console.log(message);
   if (message.content.msgtype === "m.text") {
+    const divElem = document.createElement("div");
     if (message.content.format === "org.matrix.custom.html")
-      messageDiv.innerHTML = message.content.formatted_body;
-    else messageDiv.innerText = message.content.body;
+      divElem.innerHTML = message.content.formatted_body;
+    else divElem.innerText = message.content.body;
+    if (message.content.body.length < 20)
+      messageDiv.setAttribute("style", "font-size: 100px");
+    else if (message.content.body.length < 100)
+      messageDiv.setAttribute("style", "font-size: 50px");
+    messageDiv.appendChild(divElem);
+    Prism.highlightAll();
   } else if (message.content.msgtype === "m.image") {
     const imageElem = document.createElement("img");
     const replaceBase = `https://${homeServer}/_matrix/media/r0/download/`;
@@ -52,8 +59,9 @@ function displayMessage(message) {
 
 window.onload = () => {
   fetchAccessToken((at) => fetchLastMessage(at, displayMessage));
-  setInterval(() => {
-    // TODO: make this do long polling instead of checking every 1 min
-    fetchAccessToken((at) => fetchLastMessage(at, displayMessage));
-  }, 1 * 60 * 60 * 1000);
+  // TODO: will have to remove the #message div children first
+  // setInterval(() => {
+  //   // TODO: make this do long polling instead of checking every 1 min
+  //   fetchAccessToken((at) => fetchLastMessage(at, displayMessage));
+  // }, 1 * 60 * 60 * 1000);
 };
