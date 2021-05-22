@@ -42,7 +42,16 @@ function displayMessage(message) {
     const divElem = document.createElement("div");
     if (message.content.format === "org.matrix.custom.html")
       divElem.innerHTML = message.content.formatted_body;
-    else divElem.innerText = message.content.body;
+    else {
+      if (
+        message.content.body.startsWith("https://") &&
+        message.content.body.split(" ").length == 1
+      ) {
+        divElem.innerHTML = `<a href="${
+          message.content.body
+        }">${message.content.body.slice(8)}</a>`;
+      } else divElem.innerText = message.content.body;
+    }
     if (message.content.body.length < 20)
       messageDiv.setAttribute("style", "font-size: 100px");
     else if (message.content.body.length < 100)
