@@ -28,3 +28,7 @@ img {
   width: auto;
   height: auto;
 }
+
+a {
+  margin: 0 1rem;
+}

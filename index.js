@@ -36,9 +36,12 @@ function fetchAccessToken(callback) {
 function displayMessage(message) {
   const messageDiv = document.getElementById("message");
   console.log(message);
-  if (message.content.msgtype === "m.text")
-    messageDiv.innerText = message.content.body;
-  else if (message.content.msgtype === "m.image") {
+  if (message.content.msgtype === "m.text") {
+    console.log(message.content.format);
+    if (message.content.format === "org.matrix.custom.html")
+      messageDiv.innerHTML = message.content.formatted_body;
+    else messageDiv.innerText = message.content.body;
+  } else if (message.content.msgtype === "m.image") {
     const imageElem = document.createElement("img");
     const replaceBase = `https://${homeServer}/_matrix/media/r0/download/`;
     imageElem.src = message.content.url.replace("mxc://", replaceBase);
