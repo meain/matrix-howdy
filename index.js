@@ -52,7 +52,8 @@ function displayMessage(message) {
 
 window.onload = () => {
   fetchAccessToken((at) => fetchLastMessage(at, displayMessage));
-  // setInterval(() => {
-  //   fetchAccessToken((at) => fetchLastMessage(at, displayMessage));
-  // }, 10000);
+  setInterval(() => {
+    // TODO: make this do long polling instead of checking every 1 min
+    fetchAccessToken((at) => fetchLastMessage(at, displayMessage));
+  }, 1 * 60 * 60 * 1000);
 };
