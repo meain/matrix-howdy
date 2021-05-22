@@ -3,7 +3,9 @@ const roomId = "!BrNaaqBwNWruOcfoDa:matrix.org";
 
 function fetchLastMessage(accessToken, callback) {
   const messageLimit = 1;
-  const qs = `access_token=${accessToken}&limit=${messageLimit}&dir=b&filter=${encodeURIComponent('{"types":["m.room.message"]}')}`;
+  const qs = `access_token=${accessToken}&limit=${messageLimit}&dir=b&filter=${encodeURIComponent(
+    '{"types":["m.room.message"]}'
+  )}`;
   const url = `https://${homeServer}/_matrix/client/r0/rooms/${roomId}/messages?${qs}`;
 
   fetch(url, { method: "GET" })
