@@ -52,7 +52,9 @@ function displayMessage(message) {
         }">${message.content.body.slice(8)}</a>`;
       } else divElem.innerText = message.content.body;
     }
-    if (message.content.body.length < 20)
+    if (message.content.body.length < 3)
+      messageDiv.setAttribute("style", "font-size: 200px");
+    else if (message.content.body.length < 20)
       messageDiv.setAttribute("style", "font-size: 100px");
     else if (message.content.body.length < 100)
       messageDiv.setAttribute("style", "font-size: 50px");
