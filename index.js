@@ -58,6 +58,8 @@ function displayMessage(message) {
       messageDiv.setAttribute("style", "font-size: 100px");
     else if (message.content.body.length < 100)
       messageDiv.setAttribute("style", "font-size: 50px");
+    else
+      messageDiv.setAttribute("style", "font-size: 200%");
     messageDiv.appendChild(divElem);
     Prism.highlightAll();
   } else if (message.content.msgtype === "m.image") {
